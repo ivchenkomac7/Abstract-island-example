@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wolf>
+    <weight>50</weight>
+    <maxCountPerCell>30</maxCountPerCell>
+    <speed>3</speed>
+    <foodNeeded>8</foodNeeded>
+</Wolf>
