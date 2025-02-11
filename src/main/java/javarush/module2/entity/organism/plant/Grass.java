@@ -5,7 +5,7 @@ import javarush.module2.entity.organism.Organism;
 public class Grass extends Plant{
 
     @Override
-    public Organism reproducible() {
+    public Organism reproduce() {
         return null;
     }
 }
