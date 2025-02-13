@@ -13,6 +13,10 @@ public class AnimalAttributes {
         this.speed = speed;
         this.foodNeeded = foodNeeded;
     }
+    @Override
+    public String toString() {
+        return STR."weight = \{weight}, maxCountPerCell = \{maxCountPerCell}, speed = \{speed}, foodNeeded = \{foodNeeded}";
+    }
 
 //    public double getWeight() { return weight; }
 //    public int getMaxCountPerCell() { return maxCountPerCell; }

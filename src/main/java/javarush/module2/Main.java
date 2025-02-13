@@ -2,7 +2,9 @@ package javarush.module2;
 
 import javarush.module2.GameConfigurators.AnimalAttributes;
 import javarush.module2.GameConfigurators.AnimalConfigLoader;
+import javarush.module2.GameConfigurators.FoodChainLoader;
 import javarush.module2.entity.map.Island;
+import javarush.module2.entity.organism.animal.Animal;
 import javarush.module2.entity.organism.animal.herbivore.Rabbit;
 import javarush.module2.entity.organism.animal.predator.Wolf;
 
@@ -16,7 +18,7 @@ public class Main {
 
         Map<String, AnimalAttributes> predators = AnimalConfigLoader.loadPredators();
         Map<String, AnimalAttributes> herbivores = AnimalConfigLoader.loadHerbivores();
-
+        Map<String, Map<String, Double>> foodChain = FoodChainLoader.loadFoodChain();
         if (predators.containsKey("Wolf")) {
             Wolf wolf = new Wolf(predators.get("Wolf"));
             wolf.eat(null);
@@ -30,6 +32,9 @@ public class Main {
             rabbit.move(island);
             rabbit.reproduce(null);
         }
-
+        if (predators.containsKey("Wolf")) {
+            Wolf wolf = new Wolf(predators.get("Wolf"));
+            System.out.println("Створено вовка з параметрами: " + predators.get("Wolf"));
+        }
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FoodChain>
+    <Predator name="Wolf">
+        <Prey name="Rabbit">80</Prey>
+        <Prey name="Deer">50</Prey>
+        <Prey name="Mouse">90</Prey>
+    </Predator>
+
+    <Predator name="Fox">
+        <Prey name="Rabbit">70</Prey>
+        <Prey name="Mouse">90</Prey>
+    </Predator>
+
+    <Predator name="Eagle">
+        <Prey name="Rabbit">60</Prey>
+        <Prey name="Mouse">85</Prey>
+    </Predator>
+
+    <Predator name="Snake">
+        <Prey name="Mouse">75</Prey>
+    </Predator>
+</FoodChain>
