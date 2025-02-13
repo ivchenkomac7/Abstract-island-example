@@ -4,6 +4,7 @@ import javarush.module2.GameConfigurators.AnimalAttributes;
 import javarush.module2.GameConfigurators.AnimalConfigLoader;
 import javarush.module2.GameConfigurators.FoodChainLoader;
 import javarush.module2.entity.map.Island;
+import javarush.module2.entity.map.Location;
 import javarush.module2.entity.organism.animal.Animal;
 import javarush.module2.entity.organism.animal.herbivore.Rabbit;
 import javarush.module2.entity.organism.animal.predator.Wolf;
@@ -14,27 +15,35 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
-        Island island = new Island(10, 10);
+        System.out.println("Запуск симуляції острова...");
 
+        // Завантаження конфігурацій тварин
         Map<String, AnimalAttributes> predators = AnimalConfigLoader.loadPredators();
         Map<String, AnimalAttributes> herbivores = AnimalConfigLoader.loadHerbivores();
-        Map<String, Map<String, Double>> foodChain = FoodChainLoader.loadFoodChain();
-        if (predators.containsKey("Wolf")) {
-            Wolf wolf = new Wolf(predators.get("Wolf"));
-            wolf.eat(null);
-            wolf.move(island);
-            wolf.reproduce(null);
-        }
 
-        if (herbivores.containsKey("Rabbit")) {
-            Rabbit rabbit = new Rabbit(herbivores.get("Rabbit"));
-            rabbit.eat(null);
-            rabbit.move(island);
-            rabbit.reproduce(null);
-        }
-        if (predators.containsKey("Wolf")) {
-            Wolf wolf = new Wolf(predators.get("Wolf"));
-            System.out.println("Створено вовка з параметрами: " + predators.get("Wolf"));
-        }
+        // Завантаження харчового ланцюга
+        Map<String, Map<String, Double>> foodChain = FoodChainLoader.loadFoodChain();
+
+        // Створення острова
+        Island island = new Island(5, 5);
+
+        // Створення тварин
+        Wolf wolf = new Wolf(predators.get("Wolf"), 2, 2);
+        Rabbit rabbit = new Rabbit(herbivores.get("Rabbit"), 2, 3);
+
+        // Додавання тварин на локації
+        island.getLocation(2, 2).addAnimal(wolf);
+        island.getLocation(2, 3).addAnimal(rabbit);
+
+        // Симуляція поведінки
+        wolf.eat();
+        wolf.move(island);
+        wolf.reproduce();
+
+        rabbit.eat();
+        rabbit.move(island);
+        rabbit.reproduce();
+
+        System.out.println("Симуляція завершена.");
     }
 }

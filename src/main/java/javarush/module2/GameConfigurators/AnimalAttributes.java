@@ -4,7 +4,7 @@ package javarush.module2.GameConfigurators;
 public class AnimalAttributes {
     private final double weight;
     private final int maxCountPerCell;
-    private final int speed;
+    public final int speed;
     private final double foodNeeded;
 
     public AnimalAttributes(double weight, int maxCountPerCell, int speed, double foodNeeded) {

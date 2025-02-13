@@ -6,15 +6,15 @@ import javarush.module2.entity.map.Location;
 import javarush.module2.entity.organism.Organism;
 
 public class Rabbit extends Herbivore{
-    public Rabbit(AnimalAttributes attributes) {
-        super(attributes);
+    public Rabbit(AnimalAttributes attributes, int x, int y) {
+        super(attributes, x, y);
     }
     @Override
-    public void eat(Location location) {
+    public void eat() {
         System.out.println("Кролик їсть траву");
     }
     @Override
-    public Organism reproduce(Location location) {
+    public Organism reproduce() {
         System.out.println("Кролик швидко розмножується");
         return null;
     }

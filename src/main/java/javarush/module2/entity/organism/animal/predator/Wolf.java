@@ -6,15 +6,15 @@ import javarush.module2.entity.map.Location;
 import javarush.module2.entity.organism.Organism;
 
 public class Wolf extends Predator{
-    public Wolf(AnimalAttributes attributes) {
-        super(attributes);
+    public Wolf(AnimalAttributes attributes, int x, int y) {
+        super(attributes, x, y);
     }
     @Override
-    public void eat(Location location) {
+    public void eat() {
         System.out.println("Вовк їсть свою здобич");
     }
     @Override
-    public Organism reproduce(Location location) {
+    public Organism reproduce() {
         System.out.println("Вовк знаходить пару та розмножується");
         return null;
     }
