@@ -2,7 +2,6 @@ package javarush.module2.GameConfigurators;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,6 +25,10 @@ public class AnimalConfigLoader {
     private static Map<String, AnimalAttributes> loadAnimalsFromFolder(String folderPath) {
         Map<String, AnimalAttributes> animals = new HashMap<>();
         File folder = new File(folderPath);
+        if (!folder.exists() || !folder.isDirectory()) {
+            System.err.println("Папка не знайдена: " + folderPath);
+            return animals;
+        }
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".xml"));
 
         if (files != null) {

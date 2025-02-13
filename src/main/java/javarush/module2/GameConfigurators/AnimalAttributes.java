@@ -14,8 +14,8 @@ public class AnimalAttributes {
         this.foodNeeded = foodNeeded;
     }
 
-    public double getWeight() { return weight; }
-    public int getMaxCountPerCell() { return maxCountPerCell; }
-    public int getSpeed() { return speed; }
-    public double getFoodNeeded() { return foodNeeded; }
+//    public double getWeight() { return weight; }
+//    public int getMaxCountPerCell() { return maxCountPerCell; }
+//    public int getSpeed() { return speed; }
+//    public double getFoodNeeded() { return foodNeeded; }
 }

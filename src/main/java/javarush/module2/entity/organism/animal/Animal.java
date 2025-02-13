@@ -1,22 +1,26 @@
 package javarush.module2.entity.organism.animal;
 
 import javarush.module2.GameConfigurators.AnimalAttributes;
+import javarush.module2.abstarction.entity.Dies;
 import javarush.module2.abstarction.entity.Eats;
 import javarush.module2.abstarction.entity.Movable;
 import javarush.module2.entity.organism.Organism;
 
-public abstract class Animal extends Organism implements Movable, Eats {
+import java.util.Random;
 
-    protected double weight;
-    protected int maxCountPerCell;
-    protected int speed;
-    protected double foodNeeded;
+public abstract class Animal extends Organism implements Movable, Eats, Dies {
+
+    protected AnimalAttributes attributes;
+    protected double currentHunger;
+    protected Random random = new Random();
 
     public Animal(AnimalAttributes attributes) {
 
-        this.weight = attributes.getWeight();
-        this.maxCountPerCell = attributes.getMaxCountPerCell();
-        this.speed = attributes.getSpeed();
-        this.foodNeeded = attributes.getFoodNeeded();
+        this.attributes = attributes;
+        this.currentHunger = 0;
+    }
+    @Override
+    public void die(){
+        System.out.println(STR."\{this.getClass().getSimpleName()} помер від голоду.");
     }
 }
