@@ -3,7 +3,7 @@ package javarush.module2.GameConfigurators;
 // Клас для збереження параметрів тварин
 public class AnimalAttributes {
     private final double weight;
-    private final int maxCountPerCell;
+    public final int maxCountPerCell;
     public final int speed;
     private final double foodNeeded;
 

@@ -45,4 +45,25 @@ public abstract class Animal extends Organism implements Movable, Eats, Dies {
         setPosition(newX, newY);
         System.out.println("Вовк рухається до " + newX + ", " + newY);
         }
+    @Override
+    public void reproduce(Island island){
+        Location location = island.getLocation(x, y);
+        long sameSpeciesCount = location.getAnimals().stream()
+                .filter(a-> a.getClass() == this.getClass()).count();
+
+        // Перевірка, чи є вільне місце в локації для розмноження
+        if (sameSpeciesCount < attributes.maxCountPerCell && random.nextDouble() < 0.5) { // 50% шанс розмноження
+            try {
+                Animal newAnimal = this.getClass()
+                        .getConstructor(AnimalAttributes.class, int.class, int.class)
+                        .newInstance(this.attributes, x, y);
+                location.addAnimal(newAnimal);
+                System.out.println(this.getClass().getSimpleName() + " розмножився на (" + x + ", " + y + ")");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
+
+}

@@ -13,11 +13,6 @@ public class Wolf extends Predator{
     public void eat() {
         System.out.println("Вовк їсть свою здобич");
     }
-    @Override
-    public Organism reproduce() {
-        System.out.println("Вовк знаходить пару та розмножується");
-        return null;
-    }
 
     @Override
     public void move(Island island) {
