@@ -11,14 +11,14 @@ import java.util.Map;
 // Завантажувач харчового ланцюга з XML
 public class FoodChainLoader {
     private static final String FOOD_CHAIN_PATH = "src/main/resources/config/entities/animals/food_chain/food_chain.xml";
+    private static final Map<String, Map<String, Double>> foodChain = new HashMap<>();
 
-    public static Map<String, Map<String, Double>> loadFoodChain() {
-        Map<String, Map<String, Double>> foodChain = new HashMap<>();
-
+    public static void loadFoodChain() {
+        foodChain.clear();
         try {
             if (!Files.exists(Paths.get(FOOD_CHAIN_PATH))) {
                 System.err.println("Файл харчового ланцюга не знайдено: " + FOOD_CHAIN_PATH);
-                return foodChain;
+                return;
             }
 
             File file = new File(FOOD_CHAIN_PATH);
@@ -38,14 +38,19 @@ public class FoodChainLoader {
                     Element prey = (Element) preys.item(j);
                     String preyName = prey.getAttribute("name");
                     double probability = Double.parseDouble(prey.getAttribute("probability"));
-                    preyMap.put(preyName, probability);
+                    if (probability > 0) {
+                        preyMap.put(preyName, probability);
+                    }
                 }
                 foodChain.put(predator, preyMap);
             }
         } catch (Exception e) {
-            System.err.println("Помилка завантаження харчового ланцюга");
+            System.err.println("Помилка завантаження харчового ланцюга: " + e.getMessage());
             e.printStackTrace();
         }
-        return foodChain;
+    }
+
+    public static boolean canEat(String predator, String prey) {
+        return foodChain.containsKey(predator) && foodChain.get(predator).getOrDefault(prey, 0.0) > 0;
     }
 }

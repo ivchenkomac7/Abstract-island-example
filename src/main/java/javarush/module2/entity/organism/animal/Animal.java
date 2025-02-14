@@ -8,14 +8,13 @@ import javarush.module2.entity.map.Island;
 import javarush.module2.entity.map.Location;
 import javarush.module2.entity.organism.Organism;
 
-import java.util.List;
 import java.util.Random;
 
 public abstract class Animal extends Organism implements Movable, Eats, Dies {
 
     protected AnimalAttributes attributes;
-    protected double currentHunger;
-    protected int x, y;
+    protected double hunger; // Поточний рівень їжі
+    protected int x, y; // Координати тварини
     protected Random random = new Random();
 
     public Animal(AnimalAttributes attributes, int x, int y) {
@@ -23,17 +22,26 @@ public abstract class Animal extends Organism implements Movable, Eats, Dies {
         this.attributes = attributes;
         this.x = x;
         this.y = y;
-        this.currentHunger = 0;
+        this.hunger = attributes.foodNeeded * 2; // Початковий запас їжі
     }
-
 
     public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
     }
+
     @Override
-    public void die(){
-        System.out.println(STR."\{this.getClass().getSimpleName()} помер від голоду.");
+    public void updateState(Island island){
+        hunger -= attributes.foodNeeded * 0.5; // Кожен цикл тварина втрачає їжу
+        if (hunger <= 0){
+            die(island);
+        }
+    }
+
+    @Override
+    public void die(Island island){
+        island.getLocation(x, y).removeAnimal(this);
+        System.out.println(this.getClass().getSimpleName() + " загинув від голоду на (" + x + ", " + y + ")");
     }
     @Override
     public void move(Island island) {

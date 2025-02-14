@@ -8,7 +8,7 @@ public class Rabbit extends Herbivore{
         super(attributes, x, y);
     }
     @Override
-    public void eat() {
+    public void eat(Island island) {
         System.out.println("Кролик їсть траву");
     }
 

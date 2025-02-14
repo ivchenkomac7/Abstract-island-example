@@ -5,7 +5,7 @@ public class AnimalAttributes {
     private final double weight;
     public final int maxCountPerCell;
     public final int speed;
-    private final double foodNeeded;
+    public final double foodNeeded;
 
     public AnimalAttributes(double weight, int maxCountPerCell, int speed, double foodNeeded) {
         this.weight = weight;

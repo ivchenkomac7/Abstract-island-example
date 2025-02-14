@@ -9,4 +9,8 @@ public class Grass extends Plant{
     @Override
     public void reproduce(Island island) {
     }
+    @Override
+    public void updateState(Island island){
+
+    }
 }

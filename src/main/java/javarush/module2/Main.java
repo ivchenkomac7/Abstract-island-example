@@ -10,6 +10,8 @@ import javarush.module2.entity.organism.animal.herbivore.Rabbit;
 import javarush.module2.entity.organism.animal.predator.Wolf;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -17,7 +19,7 @@ public class Main {
 
         System.out.println("Запуск симуляції острова...");
 
-        // Завантаження конфігурацій тварин
+        // Завантаження конфігурацій
         Map<String, AnimalAttributes> predators = AnimalConfigLoader.loadPredators();
         Map<String, AnimalAttributes> herbivores = AnimalConfigLoader.loadHerbivores();
 
@@ -25,25 +27,26 @@ public class Main {
         Island island = new Island(5, 5);
 
         // Створення тварин
-        Wolf wolf1 = new Wolf(predators.get("Wolf"), 2, 2);
-        Wolf wolf2 = new Wolf(predators.get("Wolf"), 2, 2);
-        Rabbit rabbit1 = new Rabbit(herbivores.get("Rabbit"), 2, 3);
+        Wolf wolf = new Wolf(predators.get("Wolf"), 2, 2);
+        Rabbit rabbit = new Rabbit(herbivores.get("Rabbit"), 2, 2);
 
-        // Додавання тварин у локації
-        island.getLocation(2, 2).addAnimal(wolf1);
-        island.getLocation(2, 2).addAnimal(wolf2);
-        island.getLocation(2, 3).addAnimal(rabbit1);
+        // Додавання тварин
+        island.getLocation(2, 2).addAnimal(wolf);
+        island.getLocation(2, 2).addAnimal(rabbit);
 
-        // Симуляція декількох тактів
+        // Симуляція 5 тактів
         for (int i = 0; i < 5; i++) {
             System.out.println("Такт " + (i + 1));
-            wolf1.eat();
-            wolf1.move(island);
-            wolf1.reproduce(island);
 
-            rabbit1.eat();
-            rabbit1.move(island);
-            rabbit1.reproduce(island);
+            // Всі тварини їдять, рухаються, перевіряють голод
+            List<Animal> animals = new ArrayList<>(island.getLocation(2, 2).getAnimals());
+            for (Animal animal : animals) {
+                animal.eat(island);
+                animal.move(island);
+                animal.updateState(island);
+            }
+
+            System.out.println();
         }
 
         System.out.println("Симуляція завершена.");
