@@ -9,10 +9,10 @@ public class Wolf extends Predator{
     public Wolf(AnimalAttributes attributes, int x, int y) {
         super(attributes, x, y);
     }
-    @Override
-    public void eat(Island island) {
-        System.out.println("Вовк їсть свою здобич");
-    }
+//    @Override
+//    public void eat(Island island) {
+//        System.out.println("Вовк їсть свою здобич");
+//    }
 
     @Override
     public void move(Island island) {

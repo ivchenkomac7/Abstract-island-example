@@ -29,10 +29,15 @@ public class Main {
         // Створення тварин
         Wolf wolf = new Wolf(predators.get("Wolf"), 2, 2);
         Rabbit rabbit = new Rabbit(herbivores.get("Rabbit"), 2, 2);
+        Rabbit rabbit2 = new Rabbit(herbivores.get("Rabbit"), 1, 2);
+        Rabbit rabbit3 = new Rabbit(herbivores.get("Rabbit"), 2, 1);
 
         // Додавання тварин
-        island.getLocation(2, 2).addAnimal(wolf);
+//        island.getLocation(2, 2).addAnimal(wolf);
         island.getLocation(2, 2).addAnimal(rabbit);
+//        island.getLocation(2, 1).addAnimal(rabbit);
+//        island.getLocation(1, 1).addAnimal(rabbit);
+//        island.getLocation(2, 3).addAnimal(rabbit);
 
         // Симуляція 5 тактів
         for (int i = 0; i < 5; i++) {

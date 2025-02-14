@@ -1,6 +1,7 @@
 package javarush.module2.entity.map;
 
 import javarush.module2.entity.organism.animal.Animal;
+import javarush.module2.entity.organism.plant.Grass;
 
 
 // Клас острова
@@ -12,7 +13,7 @@ public class Island {
         grid = new Location[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                grid[i][j] = new Location();
+                grid[i][j] = new Location(Grass.getMaxAmount());
             }
         }
     }
